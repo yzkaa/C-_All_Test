@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+{
+  char skr[20],str[20];
+  int i=0,t=20;
+  for(;i<t;i++)
+   {skr[i]='0';}
+
+  for(i=0;i<t;i++)
+   {str[i]='0';}
+
+  scanf("%s",skr);
+  scanf("%s",str);
+
+  for(i=0;skr[i]!='0';)
+    {i++;}
+
+  if(str[i]=='0')
+    for(t=0;t<i;t++)
+    printf("%c",skr[t]);
+  else 
+    for(t=0;str[t]!='0';t++)
+    printf("%c",str[t]); 
+}

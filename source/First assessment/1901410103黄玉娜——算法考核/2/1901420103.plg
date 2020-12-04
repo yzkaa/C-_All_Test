@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 1901420103 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\»ÆÓñÄÈ\AppData\Local\Temp\RSPE735.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/1901420103.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"D:\1901410103»ÆÓñÄÈ¡ª¡ªËã·¨¿¼ºË\1901420103\2.c"
+]
+Creating command line "cl.exe @"C:\Users\»ÆÓñÄÈ\AppData\Local\Temp\RSPE735.tmp"" 
+<h3>Output Window</h3>
+Compiling...
+2.c
+D:\1901410103»ÆÓñÄÈ¡ª¡ªËã·¨¿¼ºË\1901420103\2.c(52) : error C2120: 'void' illegal with all types
+Ö´ÐÐ cl.exe Ê±³ö´í.
+
+
+
+<h3>Results</h3>
+2.obj - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

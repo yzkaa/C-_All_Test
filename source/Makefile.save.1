@@ -1,0 +1,16 @@
+	g++ -o edit a.o b.o c.o d.o
+
+a.o : a.cpp a1.h
+	g++ -c a.cpp
+
+b.o : b.cpp a2.h
+	g++ -c b.cpp
+
+c.o : c.cpp a3.h a1.h
+	g++ -c c.cpp
+
+d.o : d.cpp a1.h a2.h a3.h
+	g++ -c d.cpp
+
+clean :
+	rm edit a.o b.o c.o d.o

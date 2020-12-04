@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <time.h>
+//组合去重排序
+
+int getRands(int Ints[]) {
+    int i =0;
+    int num = rand()%10+1;
+    for(; i<num; i++) {
+        Ints[i]=rand()%10;
+        printf("%d\t",Ints[i]);
+    }
+    printf("the end\n");
+    return num;
+}
+void printfun(int c[],int num1,int d[],int num2) {
+    int a = 0;
+
+    while(a<num1) {
+        printf("%d\t",c[a]);
+        a++;
+    }
+
+    a = 0;
+    while(a<num2) {
+        printf("%d\t",d[a]);
+        a++;
+    }
+}
+
+void unRepeat(int c[],int num1,int d[],int num2) { //每个参数的意思（数组一，数组一的长度，数组二，数组二的长度）
+    int i=0,j=0,k=0,a[20],p=0,b[20],h,t[20];
+    for(; i<num1; k++)
+    {   a[k]=c[i];
+        i++;
+    }
+    for(i=0; i<(num2); k++)//构造一个数组放入数组1和数组2
+    {   a[k]=d[i];
+        i++;
+    }
+    h=k;
+    for(i=0; i<h; i++)//复制该数组
+        t[i]=a[i];
+    for(i=0; i<h; i++)
+    {   k=0;
+        for(j=0; j<h; j++)
+            if(t[i]!=a[j]&&i!=j)//逐个比较，剔除相同元素
+            {   k++;
+                if(k==(h-1))
+                {   b[p]=t[i];
+                    p++;//得到新数组的元素个数
+                }
+            }
+    }
+    b[p]=-1;//防止溢出
+    for(i=0; i<p; i++)
+        for(j=0; j<p; j++)
+            if(b[j]<b[j+1])
+            {
+                k=b[j+1];
+                b[j+1]=b[j];
+                b[j]=k;
+            }
+    for(i=0; i<p; i++)
+        printf("%d\t",b[i]);
+}
+int main()
+{
+    srand((unsigned)time(NULL));
+    int i=0;
+    int c[10];
+    int d[10];
+    printf("随机生成的第一组数组：\n");
+    int num1=getRands(c);
+    printf("随机生成的第二组数组: \n");
+    int num2=getRands(d);
+    printf("处理之前：\n");
+    printfun(c,num1,d,num2);
+    printf("\n");
+    printf("处理之后：\n");
+    unRepeat(c,num1,d,num2);
+    return 0;
+}

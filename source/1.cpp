@@ -1,4 +1,4 @@
-﻿
+
 #ifndef _LAB1_H_
 #define  _LAB1_H_
 #include <iostream>

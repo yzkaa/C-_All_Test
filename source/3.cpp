@@ -1,11 +1,11 @@
 #ifndef _STACK_H_
 #define _STACK_H_
- 
+
 #include <iostream>
 using namespace std;
 
 typedef int DataType;
- 
+
 //采用链式栈 
 struct node{
    DataType element;  //数据元素 
@@ -14,7 +14,7 @@ struct node{
 
 typedef struct node *PtrToNode;
 typedef struct node * Stack;
- 
+
 /*
    函数名：isEmpty 
    函数功能：判定栈是否为空 

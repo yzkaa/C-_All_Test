@@ -86,7 +86,7 @@ private slots:
     void on_actionCancel_Filter_triggered();
     void estimate(bool flag);
 
-    void removeSeries();
+    void removeSpecifiedSeries(int index);
     void handleMarkerClicked();
     void connectMarkers();
     void disconnectMarkers();
@@ -165,6 +165,8 @@ private:
     QList<QPointF> m_points;
     QList<QPointF> maxDataListO;
     QList<QPointF> maxDataListF;
+    QList<QScatterSeries *> scatter_O;
+    QList<QScatterSeries *> scatter_F;
     QPointF maxFilteredData;
     QPointF maxOriginData;
     QPointF currentMaxData;

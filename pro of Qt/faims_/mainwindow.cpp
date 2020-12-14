@@ -47,24 +47,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(m_serial, &QSerialPort::errorOccurred, this, &MainWindow::handleError);
     connect(m_serial, &QSerialPort::readyRead, this, &MainWindow::readData);
 
-    /*TO DELETE*/
-    connect(this,&MainWindow::readData,[=](){
-        if(m_serial->atEnd()){
-            QFile file(QString::number(++x,10)+".xlsx");
-            bool is_ok = file.open(QIODevice::WriteOnly | QIODevice::Truncate);
-            if(is_ok){
-                QTextStream tStream(&file);
-                tStream<<m_ui->receivetextEdit->toPlainText();
-                file.close();
-                QTime time=QTime::currentTime().addSecs(5);
-                while(QTime::currentTime()<time){
-                    QCoreApplication::processEvents(QEventLoop::AllEvents,100);
-                }
-                on_startButton_clicked();
-            }
-        }
-    });
-
     currentymax = axisY->max();   //获取当前y轴的初始最大值
     currentymin = axisY->min();   //获取当前y轴的初始最小值
     m_ui->receivetextEdit->setProperty("noinput", true);
@@ -934,7 +916,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *){
     QAction *action1 = new QAction("Save Chart",this);
     QAction *action2 = new QAction("Save datas",this);
     QAction *action3 = new QAction("Chart Legend setting",this);
-    QAction *action4 = new QAction("Delete last series",this);
+    QMenu *menu1 = new QMenu("Delete series ...",this);
     if(maxClickedFlag%2){
         action->setText("Cancel show extreme value");
 
@@ -945,18 +927,28 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *){
         action2->setEnabled(false);
     }
     if(series.empty()){
-        action4->setEnabled(false);
+        menu1->setEnabled(false);
+
+    }else{
+        for(int i=1;i<=series.size();++i){
+            QAction *ac = new QAction(QString("Delete series %1").arg(i),this);
+            connect(ac,&QAction::triggered,[=](){
+                removeSpecifiedSeries(i-1);
+            });
+            menu1->addAction(ac);
+        }
+
     }
     connect(action, &QAction::triggered, this, &MainWindow::showextremeValue);
     connect(action1, &QAction::triggered, this, &MainWindow::savewaveform);
     connect(action2, &QAction::triggered, this, &MainWindow::savedatas);
     connect(action3, &QAction::triggered, this, &MainWindow::Set_Legend);
-    connect(action4,&QAction::triggered,this,&MainWindow::removeSeries);
+
     menu->addAction(action);
     menu->addAction(action1);
     menu->addAction(action2);
     menu->addAction(action3);
-    menu->addAction(action4);
+    menu->addMenu(menu1);
     menu->move(cursor().pos());
     menu->show();
 
@@ -978,6 +970,7 @@ void MainWindow::showextremeValue(){
 
         //m_scatter->hide();
         m_scatter = new QScatterSeries(this);
+        scatter_O <<m_scatter;
         m_scatter->setName("Max point(Original)");
         m_scatter->setMarkerShape(QScatterSeries::MarkerShapeCircle);
         m_scatter->setMarkerSize(9);
@@ -992,6 +985,7 @@ void MainWindow::showextremeValue(){
         if(filterFlag){
                 //m_scatter1->hide();
                 m_scatter1 = new QScatterSeries(this);
+                scatter_F << m_scatter1;
                 m_scatter1->setName("Max point(Filtered)");
                 m_scatter->setMarkerShape(QScatterSeries::MarkerShapeCircle);
                 m_scatter1->setMarkerSize(9.0);
@@ -1255,9 +1249,9 @@ void MainWindow::closeConfigure(){
     m_settings->m_ui->autoCheckBox->setChecked(false);
 }
 
-void MainWindow::removeSeries()
-{
-    // Remove last series from chart
+
+void MainWindow::removeSpecifiedSeries(int index){
+    series.move(index,series.count()-1);
     if (series.count() > 0) {
         QLineSeries *series1 = series.last();
         m_chart->removeSeries(series1);
@@ -1322,9 +1316,9 @@ void MainWindow::connectMarkers()
     const auto markers = m_chart->legend()->markers();
     for (QLegendMarker *marker : markers) {
         // Disconnect possible existing connection to avoid multiple connections
-        QObject::disconnect(marker, &QLegendMarker::clicked,
-                            this, &MainWindow::handleMarkerClicked);
-        QObject::connect(marker, &QLegendMarker::clicked, this, &MainWindow::handleMarkerClicked);
+        disconnect(marker, &QLegendMarker::clicked,
+                   this, &MainWindow::handleMarkerClicked);
+        connect(marker, &QLegendMarker::clicked, this, &MainWindow::handleMarkerClicked);
     }
 
 }
@@ -1334,8 +1328,8 @@ void MainWindow::disconnectMarkers()
 
     const auto markers = m_chart->legend()->markers();
     for (QLegendMarker *marker : markers) {
-        QObject::disconnect(marker, &QLegendMarker::clicked,
-                            this, &MainWindow::handleMarkerClicked);
+        disconnect(marker, &QLegendMarker::clicked,
+                   this, &MainWindow::handleMarkerClicked);
     }
 
 }

@@ -1,5 +1,16 @@
 {
     "files.associations": {
-        "random": "c"
+        "random": "c",
+        "iostream": "cpp",
+        "*.tcc": "c",
+        "fstream": "c",
+        "iosfwd": "c",
+        "istream": "c",
+        "limits": "c",
+        "sstream": "c",
+        "streambuf": "c",
+        "atomic": "cpp",
+        "cstdint": "cpp",
+        "functional": "c"
     }
 }

@@ -1,25 +1,54 @@
-// #include<cutil.h>
+#include<iostream>
 
-// /*get thread id:1D block and 2D grid*/
-// #define get_tid()(blockDim.x * (blockIdx.x + blockIdx.y * gridDim.x) + threadIdx.x)
+using namespace std;
 
-// /*get block id :2D grid*/
-// #define get_bid() (blockIdx.x + blockIdx.y * gridDim.x)
+class A
+{
+private:
+    int a,b;
+public:
+    A(int a,int b){
+        this->a = a;
+        this->b = b;
+        cout<<"A 构造"<<endl;
+    }
+    void display(){
+        cout<<a<<endl;
+        cout<<b<<endl;
+    }
+};
 
+class B:public A{
+private:
+    int c,d;
+public:
+    B(int c,int d):A(7,4){
+        this->c = c;
+        this->d = d;
+        cout<<"B 构造"<<endl;
+    }
+    void display(){
+        cout<<c<<endl;
+        cout<<d<<endl;
+    }
+};
 
-// __global__void vec_add(double *x,double *y,double *z,int n){
-//     int i = get_tid(); //user-defind macro/functuion
+class C:public B{
+private:
+    int e,f;
+public:
+    C():B(5,6){
+        e = 10;
+        f = 20;
+    }
+};
 
-//     if(i<n){
-//         z[i] = x[i] + y[i];
-//     }
-// }
-
-// int main(){
-//     int N = 1000000; //1M
-//     int bs = 256;
-//     int gs = (N+bs-1)/bs;
-
-//     //kernel,call GPU
-//     vec_add<<<gs,bs>>>(x,y,z,N);
-// }
+int main(){
+    A a(1,2);
+    a.display();
+    B b(3,4);
+    b.display();
+    C c;
+    c.display();
+    return 0;
+}

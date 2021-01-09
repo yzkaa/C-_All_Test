@@ -1,7 +1,4 @@
-/*
- * 程序名：client.cpp，此程序用于演示socket的客户端
- * 作者：C语言技术网(www.freecplus.net) 日期：20190525
-*/
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -41,17 +38,17 @@ int main(int argc,char *argv[])
   {
     int iret;
     memset(buffer,0,sizeof(buffer));
-    sprintf(buffer,"这是第%d个超级女生，编号%03d。",ii+1,ii+1);
+    sprintf(buffer,"%d data",ii+1);
     if ( (iret=send(sockfd,buffer,strlen(buffer),0))<=0) // 向服务端发送请求报文。
     { perror("send"); break; }
-    printf("发送：%s\n",buffer);
+    printf("send:%s\n",buffer);
 
     memset(buffer,0,sizeof(buffer));
     if ( (iret=recv(sockfd,buffer,sizeof(buffer),0))<=0) // 接收服务端的回应报文。
     {
        printf("iret=%d\n",iret); break;
     }
-    printf("接收：%s\n",buffer);
+    printf("recv:%s\n",buffer);
   }
  
   // 第4步：关闭socket，释放资源。

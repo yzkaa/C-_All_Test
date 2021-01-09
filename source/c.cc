@@ -5,7 +5,7 @@ using namespace std;
 #include <string.h>
 
 typedef char DataType;
- 
+
 
 //队列数据元素结构
 typedef struct node
@@ -17,7 +17,7 @@ typedef struct node
 typedef struct queueRecord
 {
     QueueData  *front, *rear ;
- }LINKQUEUE;
+}LINKQUEUE;
 typedef struct queueRecord *PLinkQueue;
 
 PLinkQueue createEmptyQueue_link( )

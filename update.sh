@@ -7,7 +7,7 @@ git commit -m "${is_date}"
 git push cpp master
 
 cd ~/Nutstore Files/
-git add.
-git commit "${is_date}"
+git add .
+git commit -m "${is_date}"
 git push note master
 

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QPushButton>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -19,11 +19,11 @@ private:
     Ui::MainWindow *ui;
 
     //各种初始化
-    void init();
+    void windowsInit();
     //连接列表
     void connectList();
-    //创建按钮
-    void addPushButton();
+    //更改按钮
+    void setPushButton(QPushButton *btn,const char tips[50],QString iconPath,int width,int height);
 
 };
 #endif // MAINWINDOW_H

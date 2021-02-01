@@ -1,0 +1,30 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "gcc_64",
+            "intelliSenseMode": "gcc-x64",
+            "includePath": [
+                "/home/yzk/Qt/6.0.0/gcc_64/include/*",
+                "/home/yzk/Qt/6.0.0/gcc_64/include/QtCore",
+                "/home/yzk/Qt/6.0.0/gcc_64/include/QtGui",
+                "/home/yzk/Qt/6.0.0/gcc_64/include/QtGui",
+                "/home/yzk/Qt/6.0.0/gcc_64/include/QtWidgets",
+                "${workspaceRoot}"
+            ],
+            "browse": {
+                "path": [
+                    "/home/yzk/Qt/6.0.0/gcc_64/include/*",
+                    "/home/yzk/Qt/6.0.0/gcc_64/include/QtCore",
+                    "/home/yzk/Qt/6.0.0/gcc_64/include/QtGui",
+                    "/home/yzk/Qt/6.0.0/gcc_64/include/QtGui",
+                    "/home/yzk/Qt/6.0.0/gcc_64/include/QtWidgets",
+                    "${workspaceRoot}"
+                ]
+            },
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ]
+}

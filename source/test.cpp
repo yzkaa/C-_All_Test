@@ -15,7 +15,7 @@ int main(){
 	return 0;
 
 	const std::string s = "Keep out!";
-	for(auto &c:a){
-		
+	for(auto &c:s){
+
 	}
 } 

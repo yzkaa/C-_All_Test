@@ -1,6 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "secondwindow.h"
 
+#include <QFileDialog>
+#include <QDebug>
+#include <QApplication>
+#include <QMessageBox>
+#include <QCloseEvent>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -31,10 +37,39 @@ void MainWindow::windowsInit(){
 
 
 void MainWindow::connectList(){
-
+    connect(ui->select_picture,&QPushButton::clicked,this,&MainWindow::pictureSelect);
+    connect(ui->exit,&QPushButton::clicked,this,&MainWindow::close);
+    connect(this,&MainWindow::readOk,&sw,&SecondWindow::showPicture);
 }
 
+void MainWindow::pictureSelect(){
+    //定义文件对话框类
+    QFileDialog *fileDialog = new QFileDialog(this);
+    //定义文件对话框标题
+    fileDialog->setWindowTitle(QStringLiteral("选择图片"));
+    //设置默认文件路径
+    fileDialog->setDirectory("/home/yzk/PYTHON");
+    //设置文件过滤器
+    fileDialog->setNameFilter(tr("File(*.png *.jpg *.jpeg *.tif *.bmp)"));
+    //设置可以选择多个文件,默认为只能选择一个文件QFileDialog::ExistingFiles
+    fileDialog->setFileMode(QFileDialog::ExistingFiles);
+    //设置视图模式
+    fileDialog->setViewMode(QFileDialog::Detail);
+    //打印所有选择的文件的路径
+    sw.fileName = fileDialog->getOpenFileName();
+    emit readOk();
+}
 
+void MainWindow::closeEvent(QCloseEvent *event){
+    QMessageBox::StandardButton result=QMessageBox::question(this, "确认", "确定要退出本系统吗？",
+                         QMessageBox::Yes|QMessageBox::No |QMessageBox::Cancel,
+                         QMessageBox::No);
+
+       if (result==QMessageBox::Yes)
+           event->accept();
+       else
+           event->ignore();
+}
 
 /***********************轮子******************************/
 //size: icon size(width,height)

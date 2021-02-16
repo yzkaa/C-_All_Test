@@ -1,10 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "secondwindow.h"
+#include "imagewindow.h"
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QLabel>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +23,6 @@ signals:
     void readOk();
 
 private:
-    Ui::MainWindow *ui;
 
     //各种初始化
     void windowsInit();
@@ -33,9 +34,19 @@ private:
     void pictureSelect();
     //事件重写
     void closeEvent(QCloseEvent *e);
-
+//    void mousePressEvent(QMouseEvent *e);
+//    void mouseReleaseEvent(QMouseEvent *e);
+//    void mouseMoveEvent(QMouseEvent *e);
+//    void paintEvent(QPaintEvent *e);
 
 private:
-    SecondWindow sw;
+    QMainWindow *window;
+    Ui::MainWindow *ui;
+    QPixmap *pm;
+    QLabel *imgBox;
+    QPointF startPos;
+    QPointF endPos;
+    ImageWindow iw;
+
 };
 #endif // MAINWINDOW_H

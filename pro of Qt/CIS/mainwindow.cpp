@@ -1,12 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "secondwindow.h"
+#include "imagewindow.h"
 
 #include <QFileDialog>
 #include <QDebug>
 #include <QApplication>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QDesktopWidget>
+#include <QMainWindow>
+#include <QScrollArea>
+#include <QPainter>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -30,16 +34,19 @@ void MainWindow::windowsInit(){
     this->setPalette(windowPal);
     setWindowFlags(windowFlags()&~Qt::WindowMaximizeButtonHint);    // 禁止最大化按钮
     setFixedSize(this->width(),this->height());                     // 禁止拖动窗口大小
+    QDesktopWidget *desktop = QApplication::desktop();
+    move((desktop->width()-this->width())/2,(desktop->height()-this->height())/2);//居中显示
     //button
     setPushButton(ui->select_picture,"选择图片",":/images/photo.png",ui->select_picture->width(),ui->select_picture->height());
     setPushButton(ui->exit,"退出",":/images/exit.png",ui->exit->width()+15,ui->exit->height()+15);
+
 }
 
 
 void MainWindow::connectList(){
     connect(ui->select_picture,&QPushButton::clicked,this,&MainWindow::pictureSelect);
     connect(ui->exit,&QPushButton::clicked,this,&MainWindow::close);
-    connect(this,&MainWindow::readOk,&sw,&SecondWindow::showPicture);
+    connect(this,&MainWindow::readOk,&iw,&ImageWindow::showImage);
 }
 
 void MainWindow::pictureSelect(){
@@ -56,7 +63,7 @@ void MainWindow::pictureSelect(){
     //设置视图模式
     fileDialog->setViewMode(QFileDialog::Detail);
     //打印所有选择的文件的路径
-    sw.fileName = fileDialog->getOpenFileName();
+    iw.fileName = fileDialog->getOpenFileName();
     emit readOk();
 }
 
@@ -71,7 +78,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
            event->ignore();
 }
 
-/***********************轮子******************************/
+
 //size: icon size(width,height)
 void MainWindow::setPushButton(QPushButton *btn,const char tips[50], QString iconPath, int width,int height){
     btn->setIcon(QIcon(iconPath));
@@ -84,3 +91,32 @@ void MainWindow::setPushButton(QPushButton *btn,const char tips[50], QString ico
     btn->setToolTip(QString::fromLocal8Bit(tips));
 
 }
+
+//void MainWindow::mousePressEvent(QMouseEvent *e){
+//    startPos = e->pos();
+
+//}
+
+//void MainWindow::mouseMoveEvent(QMouseEvent *e){
+
+//    if (e->type() == QEvent::MouseMove && (e->buttons() & Qt::LeftButton ))
+//    {
+//        endPos = e->pos();
+//        this->repaint();
+//    }
+
+
+//}
+
+//void MainWindow::mouseReleaseEvent(QMouseEvent *e){
+
+//    qDebug()<<startPos<<" "<<endPos;
+//    this->repaint();
+//}
+
+//void MainWindow::paintEvent(QPaintEvent *e){
+//    QPen pen(Qt::red);
+//    QPainter painter(this);
+//    painter.setPen(pen);
+//    painter.drawEllipse(QRectF(startPos,endPos));
+//}

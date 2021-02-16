@@ -12,7 +12,8 @@ int fun1(int a[]){
 int main(){
 	int a[100000]={6,1,2,3,4,5};
 	std::cout<<fun1(a)<<std::endl;
-	return 0;
+	unsigned buf = 1024;
+	int b[buf];
 
 	const std::string s = "Keep out!";
 	for(auto &c:s){

@@ -24,6 +24,9 @@ private:
     void mouseMoveEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *e);
 
+    void init();
+    void saveImage();
+
 private:
     QPixmap image;
     QPointF startPos;

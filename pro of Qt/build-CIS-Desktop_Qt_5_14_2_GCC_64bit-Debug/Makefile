@@ -1032,7 +1032,18 @@ imagewindow.o: ../CIS/imagewindow.cpp ../CIS/imagewindow.h \
 		../../../anaconda3/include/qt/QtGui/qtouchdevice.h \
 		../../../anaconda3/include/qt/QtWidgets/qtabwidget.h \
 		../../../anaconda3/include/qt/QtGui/qicon.h \
-		ui_imagewindow.h
+		ui_imagewindow.h \
+		../../../anaconda3/include/qt/QtGui/QCloseEvent \
+		../../../anaconda3/include/qt/QtWidgets/QFileDialog \
+		../../../anaconda3/include/qt/QtWidgets/qfiledialog.h \
+		../../../anaconda3/include/qt/QtCore/qdir.h \
+		../../../anaconda3/include/qt/QtCore/qfileinfo.h \
+		../../../anaconda3/include/qt/QtWidgets/qdialog.h \
+		../../../anaconda3/include/qt/QtGui/QPainter \
+		../../../anaconda3/include/qt/QtGui/qpainter.h \
+		../../../anaconda3/include/qt/QtGui/qtextoption.h \
+		../../../anaconda3/include/qt/QtGui/qpen.h \
+		../../../anaconda3/include/qt/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o imagewindow.o ../CIS/imagewindow.cpp
 
 main.o: ../CIS/main.cpp ../CIS/mainwindow.h \
@@ -1275,10 +1286,12 @@ mainwindow.o: ../CIS/mainwindow.cpp ../CIS/mainwindow.h \
 		../../../anaconda3/include/qt/QtGui/qtextoption.h \
 		../../../anaconda3/include/qt/QtGui/qpen.h \
 		ui_mainwindow.h \
-		../../../anaconda3/include/qt/QtCore/QVariant \
-		../../../anaconda3/include/qt/QtWidgets/QAction \
-		../../../anaconda3/include/qt/QtWidgets/qaction.h \
-		../../../anaconda3/include/qt/QtWidgets/qactiongroup.h \
+		../../../anaconda3/include/qt/QtWidgets/QFileDialog \
+		../../../anaconda3/include/qt/QtWidgets/qfiledialog.h \
+		../../../anaconda3/include/qt/QtCore/qdir.h \
+		../../../anaconda3/include/qt/QtCore/qfileinfo.h \
+		../../../anaconda3/include/qt/QtWidgets/qdialog.h \
+		../../../anaconda3/include/qt/QtCore/QDebug \
 		../../../anaconda3/include/qt/QtWidgets/QApplication \
 		../../../anaconda3/include/qt/QtWidgets/qapplication.h \
 		../../../anaconda3/include/qt/QtCore/qcoreapplication.h \
@@ -1286,48 +1299,13 @@ mainwindow.o: ../CIS/mainwindow.cpp ../CIS/mainwindow.h \
 		../../../anaconda3/include/qt/QtWidgets/qdesktopwidget.h \
 		../../../anaconda3/include/qt/QtGui/qguiapplication.h \
 		../../../anaconda3/include/qt/QtGui/qinputmethod.h \
-		../../../anaconda3/include/qt/QtWidgets/QButtonGroup \
-		../../../anaconda3/include/qt/QtWidgets/qbuttongroup.h \
-		../../../anaconda3/include/qt/QtWidgets/QHBoxLayout \
-		../../../anaconda3/include/qt/QtWidgets/qboxlayout.h \
-		../../../anaconda3/include/qt/QtWidgets/qlayout.h \
-		../../../anaconda3/include/qt/QtWidgets/qlayoutitem.h \
-		../../../anaconda3/include/qt/QtWidgets/qgridlayout.h \
-		../../../anaconda3/include/qt/QtWidgets/QHeaderView \
-		../../../anaconda3/include/qt/QtWidgets/qheaderview.h \
-		../../../anaconda3/include/qt/QtWidgets/qabstractitemview.h \
-		../../../anaconda3/include/qt/QtWidgets/qabstractscrollarea.h \
-		../../../anaconda3/include/qt/QtCore/qabstractitemmodel.h \
-		../../../anaconda3/include/qt/QtCore/qitemselectionmodel.h \
-		../../../anaconda3/include/qt/QtWidgets/qabstractitemdelegate.h \
-		../../../anaconda3/include/qt/QtWidgets/qstyleoption.h \
-		../../../anaconda3/include/qt/QtWidgets/qabstractspinbox.h \
-		../../../anaconda3/include/qt/QtGui/qvalidator.h \
-		../../../anaconda3/include/qt/QtCore/qregularexpression.h \
-		../../../anaconda3/include/qt/QtWidgets/qslider.h \
-		../../../anaconda3/include/qt/QtWidgets/qabstractslider.h \
-		../../../anaconda3/include/qt/QtWidgets/qstyle.h \
-		../../../anaconda3/include/qt/QtWidgets/qtabbar.h \
-		../../../anaconda3/include/qt/QtWidgets/qrubberband.h \
-		../../../anaconda3/include/qt/QtWidgets/QMenuBar \
-		../../../anaconda3/include/qt/QtWidgets/qmenubar.h \
-		../../../anaconda3/include/qt/QtWidgets/qmenu.h \
-		../../../anaconda3/include/qt/QtWidgets/QStatusBar \
-		../../../anaconda3/include/qt/QtWidgets/qstatusbar.h \
-		../../../anaconda3/include/qt/QtWidgets/QVBoxLayout \
-		../../../anaconda3/include/qt/QtWidgets/QWidget \
-		../../../anaconda3/include/qt/QtWidgets/QFileDialog \
-		../../../anaconda3/include/qt/QtWidgets/qfiledialog.h \
-		../../../anaconda3/include/qt/QtCore/qdir.h \
-		../../../anaconda3/include/qt/QtCore/qfileinfo.h \
-		../../../anaconda3/include/qt/QtWidgets/qdialog.h \
-		../../../anaconda3/include/qt/QtCore/QDebug \
 		../../../anaconda3/include/qt/QtWidgets/QMessageBox \
 		../../../anaconda3/include/qt/QtWidgets/qmessagebox.h \
 		../../../anaconda3/include/qt/QtGui/QCloseEvent \
 		../../../anaconda3/include/qt/QtWidgets/QDesktopWidget \
 		../../../anaconda3/include/qt/QtWidgets/QScrollArea \
-		../../../anaconda3/include/qt/QtWidgets/qscrollarea.h
+		../../../anaconda3/include/qt/QtWidgets/qscrollarea.h \
+		../../../anaconda3/include/qt/QtWidgets/qabstractscrollarea.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../CIS/mainwindow.cpp
 
 qrc_res.o: qrc_res.cpp 

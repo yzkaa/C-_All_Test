@@ -50,6 +50,7 @@ void MainWindow::connectList(){
 }
 
 void MainWindow::pictureSelect(){
+    iw.fileName = "";
     //定义文件对话框类
     QFileDialog *fileDialog = new QFileDialog(this);
     //定义文件对话框标题
@@ -62,8 +63,10 @@ void MainWindow::pictureSelect(){
     fileDialog->setFileMode(QFileDialog::ExistingFiles);
     //设置视图模式
     fileDialog->setViewMode(QFileDialog::Detail);
-    //打印所有选择的文件的路径
-    iw.fileName = fileDialog->getOpenFileName();
+
+    if((iw.fileName = fileDialog->getOpenFileName()) ==NULL){
+        return ;
+    }
     emit readOk();
 }
 

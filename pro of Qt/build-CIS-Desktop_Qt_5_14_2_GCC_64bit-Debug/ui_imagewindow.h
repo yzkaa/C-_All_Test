@@ -33,6 +33,7 @@ public:
     QWidget *widget;
     QVBoxLayout *verticalLayout;
     QPushButton *makeLabelBtn;
+    QPushButton *saveLabel;
     QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -61,6 +62,11 @@ public:
 
         verticalLayout->addWidget(makeLabelBtn);
 
+        saveLabel = new QPushButton(widget);
+        saveLabel->setObjectName(QStringLiteral("saveLabel"));
+
+        verticalLayout->addWidget(saveLabel);
+
 
         horizontalLayout->addWidget(widget);
 
@@ -87,6 +93,7 @@ public:
     {
         ImageWindow->setWindowTitle(QApplication::translate("ImageWindow", "MainWindow", Q_NULLPTR));
         makeLabelBtn->setText(QApplication::translate("ImageWindow", "label", Q_NULLPTR));
+        saveLabel->setText(QApplication::translate("ImageWindow", "save", Q_NULLPTR));
         label->setText(QString());
     } // retranslateUi
 

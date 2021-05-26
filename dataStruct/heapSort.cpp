@@ -38,7 +38,7 @@ void heapAdjust(int arr[],int s,int m){
 
 int main()
 {
-    int arr[9] = {50,10,90,30,70,40,80,60,20};
+    int arr[9] = {50,10,100,30,70,40,80,60,20};
     heapSort(arr,9);
     for(int a : arr){
         std::cout<<a<<std::endl;

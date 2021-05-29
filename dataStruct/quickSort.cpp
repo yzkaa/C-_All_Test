@@ -1,5 +1,5 @@
 #include<iostream>
-//#include"linkList.h"
+
 void QSort(int[],int,int);
 int partition(int[],int,int);
 void quickSort(int arr[],int size){

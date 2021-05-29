@@ -4,6 +4,7 @@
 //递归方法
 void merge(int [],int [],int ,int, int);
 void mSort(int [],int [],int , int);
+void mergePass(int [],int *,int ,int);
 void mergingSort(int arr[],int size){
     mSort(arr,arr,0,size-1);
 }
@@ -43,6 +44,37 @@ void merge(int SR[],int TR[],int i,int m , int n){
              TR[k+l] = SR[j+l];
          }
      }
+}
+
+
+//非递归方法
+void mergeSort2(int arr[],int size){
+    int* TR = new int[size];
+    int k = 1;
+    while(k<size){
+        mergePass(arr,TR,k-1,size-1);
+        k*=2;
+        mergePass(TR,arr,k-1,size-1);
+        k*=2;
+    }
+}
+
+//将SR中相邻长度为s的子序列两两归并到TR
+void mergePass(int SR[],int TR[],int s,int n){
+    int i = 0;
+    int j;
+    while(i< n-2*s+1){
+        merge(SR,TR,i,i+(s+1),i+2*(s+1));
+        i = i+2*(s+1);
+    }
+    if(i<n-s+1){
+        merge(SR,TR,i,i+s-1,n);
+
+    }else{
+        for(j=1;j<=n;j++){
+            TR[j] = SR[j];
+        }
+    }
 }
 
 int main()

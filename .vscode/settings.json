@@ -60,6 +60,12 @@
         "future": "cpp",
         "mutex": "cpp",
         "thread": "cpp",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "bitset": "cpp",
+        "complex": "cpp",
+        "regex": "cpp",
+        "shared_mutex": "cpp",
+        "stop_token": "cpp",
+        "variant": "cpp"
     }
 }
